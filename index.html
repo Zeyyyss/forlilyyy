@@ -1,0 +1,498 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nice to Meet You, Lily ♡</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap');
+
+:root {
+  --pink: #ff82ad;
+  --soft: #fff0f5;
+  --dark: #8d4264;
+  --white: #fffafd;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: 'DM Sans', sans-serif;
+  color: var(--dark);
+  background:
+    radial-gradient(ellipse at top left, #ffd8e7, transparent 55%),
+    linear-gradient(145deg, #fff8fb, #ffe4ef, #fff1f7);
+  overflow-x: hidden;
+}
+
+button { font: inherit; cursor: pointer; }
+
+.hearts {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.heart {
+  position: absolute;
+  bottom: -40px;
+  color: #ff91b9;
+  opacity: .65;
+  animation: floatUp linear forwards;
+}
+
+@keyframes floatUp {
+  to { transform: translateY(-115vh) rotate(35deg); opacity: 0; }
+}
+
+.container {
+  width: min(92%, 540px);
+  margin: 0 auto;
+  padding: 34px 0 48px;
+  position: relative;
+  z-index: 1;
+}
+
+.top {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.pill {
+  display: inline-block;
+  background: #fff;
+  border: 1px solid #ffd2e3;
+  padding: 8px 15px;
+  border-radius: 30px;
+  font-size: 12px;
+  letter-spacing: 1px;
+}
+
+h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(38px, 9vw, 56px);
+  line-height: 1.12;
+  margin: 18px 0 10px;
+  color: #c75583;
+}
+
+h1 span { font-style: italic; }
+
+.subtitle {
+  font-size: 14px;
+  line-height: 1.8;
+  color: #a66a86;
+}
+
+.card {
+  background: rgba(255,255,255,.83);
+  border: 1px solid #fff;
+  border-radius: 28px;
+  padding: 27px 23px;
+  box-shadow: 0 16px 45px #dc80a51c;
+  backdrop-filter: blur(10px);
+  margin-bottom: 18px;
+}
+
+.envelope {
+  text-align: center;
+  padding: 22px 10px;
+}
+
+.big-heart {
+  font-size: 66px;
+  display: block;
+  animation: beat 1.5s infinite;
+}
+
+@keyframes beat {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.12); }
+}
+
+h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 25px;
+  margin: 13px 0;
+}
+
+p {
+  font-size: 14px;
+  line-height: 1.95;
+}
+
+.btn {
+  border: none;
+  border-radius: 30px;
+  padding: 13px 20px;
+  font-weight: 700;
+  transition: .2s;
+}
+
+.btn:hover { transform: translateY(-2px); }
+
+.primary {
+  background: linear-gradient(135deg, #ff8fb8, #ed659a);
+  color: white;
+  box-shadow: 0 8px 20px #f17ca744;
+}
+
+.secondary {
+  background: #fff0f6;
+  color: #c75583;
+  border: 1px solid #ffd6e5;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.letter {
+  display: none;
+  animation: appear .6s ease;
+}
+
+.letter.show { display: block; }
+
+@keyframes appear {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #e57da5;
+  font-weight: 700;
+}
+
+.message {
+  white-space: pre-line;
+}
+
+.signature {
+  text-align: right;
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 20px;
+  color: #d15e8e;
+  margin-top: 24px;
+}
+
+.compliment {
+  text-align: center;
+  background: linear-gradient(140deg, #fff0f6, #fffafd);
+}
+
+.compliment-text {
+  min-height: 58px;
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 20px;
+  line-height: 1.5;
+  padding: 8px 0;
+}
+
+.footer {
+  text-align: center;
+  font-size: 11px;
+  color: #bd7997;
+  padding-top: 15px;
+}
+
+#musicStatus {
+  font-size: 12px;
+  margin-top: 9px;
+  color: #bc7091;
+}
+
+.sparkle {
+  display: inline-block;
+  animation: twinkle 1.8s infinite alternate;
+}
+
+@keyframes twinkle {
+  from { opacity: .5; transform: scale(.9); }
+  to { opacity: 1; transform: scale(1.15); }
+}
+
+@media (max-width: 400px) {
+  .card { padding: 22px 18px; }
+  .actions .btn { width: 100%; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="hearts" id="hearts"></div>
+
+<main class="container">
+
+  <header class="top">
+    <div class="pill">୨୧ A LITTLE LETTER FOR YOU ୨୧</div>
+    <h1>Nice to meet you,<br><span>Lily ♡</span></h1>
+    <div class="subtitle">
+      Ada seseorang yang ingin menyampaikan salam<br>
+      dan sedikit kata manis untukmu...
+    </div>
+  </header>
+
+  <section class="card envelope" id="envelope">
+    <span class="big-heart">💌</span>
+    <h2>Hai, Lily!</h2>
+    <p>
+      Aku punya surat kecil buat kamu.<br>
+      Nggak panjang, kok. Cuma sedikit<br>
+      salam dan hal baik yang ingin kusampaikan.
+    </p>
+    <button class="btn primary" onclick="openLetter()">
+      Buka suratnya ♡
+    </button>
+  </section>
+
+  <section class="card letter" id="letter">
+    <div class="label">♡ sepucuk surat kecil ♡</div>
+    <h2>Halo, Lily! 🌷</h2>
+
+    <p class="message" id="message"></p>
+
+    <div class="signature">
+      Salam manis,<br>
+      seseorang yang ingin menyapamu ♡
+    </div>
+
+    <div class="actions">
+      <button class="btn secondary" onclick="copyLetter()">
+        Salin surat 💌
+      </button>
+      <button class="btn primary" onclick="showCompliment()">
+        Satu lagi buat Lily ✨
+      </button>
+    </div>
+    <p id="copyStatus" style="text-align:center"></p>
+  </section>
+
+  <section class="card compliment" id="compliment">
+    <div class="label">♡ LITTLE COMPLIMENT ♡</div>
+    <h2>Hal kecil tentang kamu</h2>
+    <div class="compliment-text" id="complimentText">
+      Tekan tombolnya, Lily! 🌸
+    </div>
+    <button class="btn primary" onclick="newCompliment()">
+      Kasih aku satu lagi 💗
+    </button>
+  </section>
+
+  <section class="card" style="text-align:center">
+    <span style="font-size:32px">🎀</span>
+    <h2>Senang bisa menyapamu!</h2>
+    <p>
+      Semoga hari Lily dipenuhi hal-hal baik,
+      senyum yang tulus, dan alasan-alasan kecil
+      untuk bahagia.
+    </p>
+    <p style="color:#d36e99">
+      Jangan lupa bahagia hari ini, ya? ♡
+    </p>
+    <button class="btn secondary" onclick="toggleMusic()" id="musicBtn">
+      ♫ Putar musik
+    </button>
+    <div id="musicStatus">Musik romantis yang lembut 🎶</div>
+  </section>
+
+  <footer class="footer">
+    dibuat dengan sedikit rasa malu dan banyak niat baik ♡<br>
+    <span class="sparkle">✧ ୨୧ ✧</span>
+  </footer>
+
+</main>
+
+<script>
+const letterText = `Nice to meet you, Lily! ♡
+
+Halo, Lily! Apa kabar?
+
+Aku cuma mau menyapa kamu dan bilang kalau aku senang bisa mengenalmu, walaupun mungkin kita belum terlalu dekat.
+
+Semoga kamu selalu dikelilingi orang-orang baik, punya banyak alasan buat tersenyum, dan selalu ingat kalau kamu juga pantas mendapatkan hal-hal indah dalam hidup.
+
+Jangan terlalu keras sama diri sendiri, ya. Kalau suatu hari terasa melelahkan, nggak apa-apa buat istirahat sebentar. Kamu nggak harus selalu baik-baik saja setiap waktu.
+
+Oh iya, tetap jadi Lily yang punya keunikan tersendiri, ya! Semoga hari-harimu dipenuhi kebahagiaan kecil yang mungkin sederhana, tapi berarti.
+
+Sekali lagi, salam kenal, Lily! Semoga ini bisa jadi awal dari perkenalan yang menyenangkan. 🌷`;
+
+const compliments = [
+  "Semoga senyum kamu hari ini lebih banyak daripada sedihnya. ♡",
+  "Kamu punya keunikan yang nggak harus dibandingkan dengan siapa pun.",
+  "Semoga selalu ada hal kecil yang bikin kamu tersenyum hari ini. 🌷",
+  "Kamu layak mendapatkan kebaikan, bukan cuma dari orang lain, tapi juga dari dirimu sendiri.",
+  "Semoga hal-hal yang sedang kamu usahakan perlahan menemukan jalannya.",
+  "Dunia terasa sedikit lebih berwarna saat kita mau saling mengenal. 🎀",
+  "Jangan lupa, kamu juga pantas dirayakan, bahkan untuk hal-hal kecil."
+];
+
+let complimentIndex = -1;
+let musicPlaying = false;
+let audioContext = null;
+let musicTimer = null;
+let noteIndex = 0;
+
+function openLetter() {
+  const letter = document.getElementById('letter');
+  letter.classList.add('show');
+  document.getElementById('envelope').style.display = 'none';
+  document.getElementById('message').textContent = letterText;
+  burstHearts();
+  setTimeout(() => {
+    letter.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 100);
+}
+
+function showCompliment() {
+  document.getElementById('compliment').scrollIntoView({
+    behavior: 'smooth',
+    block: 'center'
+  });
+  newCompliment();
+}
+
+function newCompliment() {
+  let next;
+  do {
+    next = Math.floor(Math.random() * compliments.length);
+  } while (next === complimentIndex && compliments.length > 1);
+
+  complimentIndex = next;
+  const el = document.getElementById('complimentText');
+  el.style.opacity = 0;
+
+  setTimeout(() => {
+    el.textContent = compliments[complimentIndex];
+    el.style.opacity = 1;
+  }, 180);
+
+  burstHearts();
+}
+
+async function copyLetter() {
+  const text = document.getElementById('message').textContent;
+  const status = document.getElementById('copyStatus');
+
+  try {
+    await navigator.clipboard.writeText(text);
+    status.textContent = 'Surat berhasil disalin! 💗';
+  } catch (e) {
+    const area = document.createElement('textarea');
+    area.value = text;
+    document.body.appendChild(area);
+    area.select();
+    const ok = document.execCommand('copy');
+    area.remove();
+    status.textContent = ok
+      ? 'Surat berhasil disalin! 💗'
+      : 'Silakan salin teks surat secara manual, ya.';
+  }
+}
+
+function makeHeart() {
+  const heart = document.createElement('span');
+  heart.className = 'heart';
+  heart.textContent = ['♡', '♥', '💕', '୨୧', '✿'][
+    Math.floor(Math.random() * 5)
+  ];
+  heart.style.left = Math.random() * 100 + '%';
+  heart.style.fontSize = (14 + Math.random() * 23) + 'px';
+
+  const duration = 5 + Math.random() * 6;
+  heart.style.animationDuration = duration + 's';
+
+  document.getElementById('hearts').appendChild(heart);
+  setTimeout(() => heart.remove(), duration * 1000);
+}
+
+setInterval(makeHeart, 650);
+
+function burstHearts() {
+  for (let i = 0; i < 18; i++) {
+    setTimeout(makeHeart, i * 65);
+  }
+}
+
+// Musik melodi sederhana menggunakan Web Audio API.
+function toggleMusic() {
+  if (musicPlaying) {
+    clearInterval(musicTimer);
+    musicPlaying = false;
+    if (audioContext) audioContext.suspend();
+    document.getElementById('musicBtn').textContent = '♫ Putar musik';
+    document.getElementById('musicStatus').textContent = 'Musik dijeda ♡';
+    return;
+  }
+
+  try {
+    const AudioCtx = window.AudioContext || window.webkitAudioContext;
+    if (!AudioCtx) throw new Error('Audio tidak didukung');
+
+    if (!audioContext) audioContext = new AudioCtx();
+    audioContext.resume();
+
+    const melody = [
+      523.25, 659.25, 783.99, 659.25,
+      587.33, 698.46, 880.00, 698.46,
+      523.25, 659.25, 783.99, 1046.5,
+      880.00, 783.99, 659.25, 587.33
+    ];
+
+    function playNote() {
+      if (!audioContext || audioContext.state !== 'running') return;
+
+      const osc = audioContext.createOscillator();
+      const gain = audioContext.createGain();
+
+      osc.type = 'sine';
+      osc.frequency.value = melody[noteIndex % melody.length];
+
+      gain.gain.setValueAtTime(0.0001, audioContext.currentTime);
+      gain.gain.exponentialRampToValueAtTime(
+        0.07, audioContext.currentTime + 0.04
+      );
+      gain.gain.exponentialRampToValueAtTime(
+        0.0001, audioContext.currentTime + 0.48
+      );
+
+      osc.connect(gain);
+      gain.connect(audioContext.destination);
+
+      osc.start();
+      osc.stop(audioContext.currentTime + 0.5);
+      noteIndex++;
+    }
+
+    playNote();
+    musicTimer = setInterval(playNote, 480);
+    musicPlaying = true;
+    document.getElementById('musicBtn').textContent = '♫ Jeda musik';
+    document.getElementById('musicStatus').textContent =
+      'Melodi manis sedang diputar 🎶';
+  } catch (e) {
+    document.getElementById('musicStatus').textContent =
+      'Browser ini belum mendukung pemutaran audio.';
+  }
+}
+</script>
+
+</body>
+</html>
